@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-st.title("Análisis de Anuncios de Venta de Coches")  
+st.title("Análisis de datos de venta de coches")  
 
 current_directory = os.path.dirname(os.path.abspath(__file__))
 csv_path = os.path.join(current_directory, "vehicles_us.csv")
@@ -36,8 +36,8 @@ if pie_checkbox:
     transmission_counts = car_data['transmission'].value_counts().reset_index()
     transmission_counts.columns = ['transmission', 'count']
 
-
     st.write("Grafico de pastel de que porcentaje de vehiculos manejan los diferentes tipos de transmiciones")
+    
     # Crear gráfico de pastel (pie chart)
-    fig3 = px.pie(transmission_counts, values='count', names='transmission', title="Distribución de Transmisiones")
+    fig3 = px.pie(transmission_counts, values='count', names='transmission')
     st.plotly_chart(fig3, use_container_width=True )
