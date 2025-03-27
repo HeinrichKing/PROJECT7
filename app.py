@@ -1,8 +1,12 @@
+import os
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-        
-car_data = pd.read_csv(r"C:\Users\Usuario\Desktop\CARPETAS\TRIPLETEN\PROYECTO7\PROJECT7\vehicles_us.csv") # leer los datos
+
+current_directory = os.path.dirname(os.path.abspath(__file__))
+csv_path = os.path.join(current_directory, "vehicles_us.csv")
+
+car_data = pd.read_csv(csv_path)
 hist_checkbox = st.checkbox('Construir histograma') # crear un botón
 scater_checkbox= st.checkbox("Contruir gráfico de dispersión")
         
