@@ -3,13 +3,15 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+st.title("Análisis de Anuncios de Venta de Coches")  
+
 current_directory = os.path.dirname(os.path.abspath(__file__))
 csv_path = os.path.join(current_directory, "vehicles_us.csv")
 
 car_data = pd.read_csv(csv_path)
-hist_checkbox = st.checkbox('Construir histograma') # crear un botón
+hist_checkbox = st.checkbox('Construir histograma') 
 scater_checkbox= st.checkbox("Contruir gráfico de dispersión")
-        
+pie_checkbox= st.checkbox("Construir gráfico de pastel")
 if hist_checkbox: # al hacer clic en el botón
     # escribir un mensaje
     st.write('Creación de un histograma para el conjunto de datos de anuncios de venta de coches')
@@ -30,3 +32,12 @@ if scater_checkbox:
     #Mostramos el gráfico de dispersión 
     st.plotly_chart(fig1, use_container_width=True )
     
+if pie_checkbox: 
+    transmission_counts = car_data['transmission'].value_counts().reset_index()
+    transmission_counts.columns = ['transmission', 'count']
+
+
+    st.write("Grafico de pastel de que porcentaje de vehiculos manejan los diferentes tipos de transmiciones")
+    # Crear gráfico de pastel (pie chart)
+    fig3 = px.pie(transmission_counts, values='count', names='transmission', title="Distribución de Transmisiones")
+    st.plotly_chart(fig3, use_container_width=True )
