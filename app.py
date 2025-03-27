@@ -29,3 +29,6 @@ if scater_checkbox:
     
     #Mostramos el gráfico de dispersión 
     st.plotly_chart(fig1, use_container_width=True )
+    
+if __name__ == "__main__":
+    st.run(port=port, server_address="0.0.0.0")
